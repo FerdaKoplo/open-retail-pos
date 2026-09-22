@@ -163,7 +163,7 @@ database
 ui
 ```
 
-Contoh:
+Example :
 
 ```text
 feat(products): add barcode management
@@ -274,7 +274,7 @@ A Pull Request must not be merged when:
 
 Before a Pull Request is merged, the branch must be updated with the latest changes from `main`.
 
-Contoh:
+Example :
 
 ```bash
 git fetch origin
@@ -409,7 +409,7 @@ Bugs that directly affect production use may be handled through a branch:
 hotfix/<issue-number>-<description>
 ```
 
-Contoh:
+Example :
 
 ```text
 hotfix/80-payment-transaction
