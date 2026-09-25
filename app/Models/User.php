@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login_at',
     ];
 
     /**
@@ -31,6 +32,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'last_login_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     /**
@@ -44,5 +50,45 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function openedCashSessions()
+    {
+        return $this->hasMany(CashSession::class, 'opened_by');
+    }
+
+    public function closedCashSessions()
+    {
+        return $this->hasMany(CashSession::class, 'closed_by');
+    }
+
+    public function purchaseOrders()
+    {
+        return $this->hasMany(PurchaseOrder::class, 'created_by');
+    }
+
+    public function receivedPurchaseReceipts()
+    {
+        return $this->hasMany(PurchaseReceipt::class, 'received_by');
+    }
+
+    public function createdStockAdjustments()
+    {
+        return $this->hasMany(StockAdjustment::class, 'created_by');
+    }
+
+    public function approvedStockAdjustments()
+    {
+        return $this->hasMany(StockAdjustment::class, 'approved_by');
+    }
+
+    public function createdStockOpnames()
+    {
+        return $this->hasMany(StockOpname::class, 'created_by');
+    }
+
+    public function completedStockOpnames()
+    {
+        return $this->hasMany(StockOpname::class, 'completed_by');
     }
 }
